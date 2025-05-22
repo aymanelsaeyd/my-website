@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الشخصي</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0" nonce="random-nonce"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div id="error-message" class="error-message"></div>
+            <div class="profile-header">
+                <div class="cover-photo" id="cover-photo"></div>
+                <img id="profile-picture" src="https://via.placeholder.com/150" alt="الصورة الشخصية" class="profile-picture">
+                <h2 id="profile-name">اسم المستخدم</h2>
+                <p id="profile-status" class="profile-status">مرحباً بكم في ملفي الشخصي</p>
+            </div>
+            
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="posts-count">0</div>
+                    <div class="stat-label">المنشورات</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="friends-count">0</div>
+                    <div class="stat-label">الأصدقاء</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="photos-count">0</div>
+                    <div class="stat-label">الصور</div>
+                </div>
+            </div>
+            
+            <div class="profile-info">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <span class="label">البريد الإلكتروني:</span>
+                        <span id="profile-email">example@email.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-user-circle"></i>
+                    <div>
+                        <span class="label">نوع الحساب:</span>
+                        <span id="account-type">بريد إلكتروني</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <span class="label">تاريخ التسجيل:</span>
+                        <span id="registration-date">2025/05/22</span>
+                    </div>
+                </div>
+                <div class="info-item" id="location-item" style="display: none;">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <span class="label">الموقع:</span>
+                        <span id="profile-location"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="facebook-profile" class="facebook-profile" style="display: none;">
+                <h3>حساب الفيسبوك</h3>
+                <div class="fb-profile-content">
+                    <div class="fb-like-box">
+                        <div class="fb-page" 
+                             id="fb-page-container"
+                             data-tabs="timeline"
+                             data-width=""
+                             data-height=""
+                             data-small-header="false"
+                             data-adapt-container-width="true"
+                             data-hide-cover="false"
+                             data-show-facepile="true">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="logout()" class="logout-btn">تسجيل الخروج</button>
+        </div>
+    </div>
+    <script src="profile.js"></script>
+</body>
+</html>

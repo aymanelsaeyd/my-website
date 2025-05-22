@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link rel="stylesheet" href="style.css">
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0" nonce="random-nonce"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div id="error-message" class="error-message"></div>
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="social-login">
+                    <button type="button" onclick="loginWithFacebook()" class="fb-btn">
+                        تسجيل الدخول بالفيسبوك
+                    </button>
+                </div>
+                <div class="separator">أو</div>
+                <div class="login-tabs">
+                    <button type="button" class="tab-btn active" onclick="switchLoginMethod('email')">البريد الإلكتروني</button>
+                    <button type="button" class="tab-btn" onclick="switchLoginMethod('phone')">رقم الهاتف</button>
+                </div>
+                <div id="email-login" class="login-method active">
+                    <div class="input-group">
+                        <input type="email" id="email" placeholder="البريد الإلكتروني">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="كلمة المرور">
+                    </div>
+                </div>
+                <div id="phone-login" class="login-method">
+                    <div class="input-group">
+                        <input type="tel" id="phone" placeholder="رقم الهاتف" pattern="[0-9]{11}">
+                    </div>
+                    <div class="input-group verification-group" style="display: none;">
+                        <input type="text" id="verification-code" placeholder="رمز التحقق" maxlength="6">
+                        <button type="button" class="resend-btn" onclick="sendVerificationCode()">إعادة إرسال الرمز</button>
+                    </div>
+                </div>
+                <button type="submit" class="login-btn">تسجيل الدخول</button>
+                <p class="register-link">
+                    ليس لديك حساب؟ <a href="register.html">تسجيل حساب جديد</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

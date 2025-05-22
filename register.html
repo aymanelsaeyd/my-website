@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل حساب جديد</title>
+    <link rel="stylesheet" href="style.css">
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0" nonce="random-nonce"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div id="error-message" class="error-message"></div>
+            <h2>تسجيل حساب جديد</h2>
+            <form id="registerForm" onsubmit="return handleRegister(event)">
+                <div class="social-login">
+                    <button type="button" onclick="registerWithFacebook()" class="fb-btn">
+                        تسجيل حساب بالفيسبوك
+                    </button>
+                </div>
+                <div class="separator">أو</div>
+                <div class="input-group">
+                    <input type="text" id="name" required placeholder="الاسم الكامل">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="email" required placeholder="البريد الإلكتروني">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" required placeholder="كلمة المرور">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="confirm-password" required placeholder="تأكيد كلمة المرور">
+                </div>
+                <button type="submit" class="login-btn">تسجيل حساب جديد</button>
+                <p class="login-link">
+                    لديك حساب بالفعل؟ <a href="index.html">تسجيل الدخول</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+</html>
