@@ -3,50 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تسجيل الدخول</title>
-    <link rel="stylesheet" href="style.css">
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/ar_AR/sdk.js#xfbml=1&version=v17.0" nonce="random-nonce"></script>
+    <title>المبرمج المحترف | مصمم جرافيك ومسوق رقمي</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="login-box">
-            <div id="error-message" class="error-message"></div>
-            <h2>تسجيل الدخول</h2>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
-                <div class="social-login">
-                    <button type="button" onclick="loginWithFacebook()" class="fb-btn">
-                        تسجيل الدخول بالفيسبوك
-                    </button>
-                </div>
-                <div class="separator">أو</div>
-                <div class="login-tabs">
-                    <button type="button" class="tab-btn active" onclick="switchLoginMethod('email')">البريد الإلكتروني</button>
-                    <button type="button" class="tab-btn" onclick="switchLoginMethod('phone')">رقم الهاتف</button>
-                </div>
-                <div id="email-login" class="login-method active">
-                    <div class="input-group">
-                        <input type="email" id="email" placeholder="البريد الإلكتروني">
-                    </div>
-                    <div class="input-group">
-                        <input type="password" id="password" placeholder="كلمة المرور">
-                    </div>
-                </div>
-                <div id="phone-login" class="login-method">
-                    <div class="input-group">
-                        <input type="tel" id="phone" placeholder="رقم الهاتف" pattern="[0-9]{11}">
-                    </div>
-                    <div class="input-group verification-group" style="display: none;">
-                        <input type="text" id="verification-code" placeholder="رمز التحقق" maxlength="6">
-                        <button type="button" class="resend-btn" onclick="sendVerificationCode()">إعادة إرسال الرمز</button>
-                    </div>
-                </div>
-                <button type="submit" class="login-btn">تسجيل الدخول</button>
-                <p class="register-link">
-                    ليس لديك حساب؟ <a href="register.html">تسجيل حساب جديد</a>
-                </p>
-            </form>
+    <header>
+        <nav>
+            <div class="logo">المبرمج المحترف</div>
+            <ul>
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#services">خدماتي</a></li>
+                <li><a href="#portfolio">أعمالي</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مرحباً بك في موقعي</h1>
+            <p>مبرمج محترف ومصمم جرافيك ومسوق رقمي</p>
+            <a href="#contact" class="cta-button">تواصل معي</a>
         </div>
-    </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>خدماتي</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-code"></i>
+                <h3>برمجة المواقع</h3>
+                <p>تطوير مواقع احترافية وتطبيقات ويب متجاوبة</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>تصميم جرافيك</h3>
+                <p>تصميمات احترافية باستخدام فوتوشوب</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bullhorn"></i>
+                <h3>تسويق رقمي</h3>
+                <p>حملات تسويقية فعالة لتنمية عملك</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-video"></i>
+                <h3>تحرير فيديو</h3>
+                <p>مونتاج وتحرير فيديوهات احترافية</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>مهاراتي وتقنياتي</h2>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>تطوير الويب</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <i class="fab fa-html5"></i>
+                        <span>HTML5</span>
+                        <div class="skill-level" data-level="95"></div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>CSS3</span>
+                        <div class="skill-level" data-level="90"></div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fab fa-js"></i>
+                        <span>JavaScript</span>
+                        <div class="skill-level" data-level="85"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>التصميم</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <i class="fab fa-adobe"></i>
+                        <span>Photoshop</span>
+                        <div class="skill-level" data-level="95"></div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-palette"></i>
+                        <span>UI/UX</span>
+                        <div class="skill-level" data-level="85"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-category">
+                <h3>الفيديو والمونتاج</h3>
+                <div class="skill-items">
+                    <div class="skill-item">
+                        <i class="fas fa-video"></i>
+                        <span>تحرير فيديو</span>
+                        <div class="skill-level" data-level="90"></div>
+                    </div>
+                    <div class="skill-item">
+                        <i class="fas fa-film"></i>
+                        <span>مونتاج</span>
+                        <div class="skill-level" data-level="88"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements">
+        <h2>الشهادات والإنجازات</h2>
+        <div class="achievements-container">
+            <div class="achievement-card">
+                <i class="fas fa-certificate"></i>
+                <h3>شهادة تطوير الويب</h3>
+                <p>حاصل على شهادة معتمدة في تطوير الويب من أكاديمية عالمية</p>
+                <span class="date">2024</span>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-award"></i>
+                <h3>جائزة أفضل مصمم</h3>
+                <p>حائز على جائزة أفضل مصمم في مسابقة التصميم الإبداعي</p>
+                <span class="date">2023</span>
+            </div>
+            <div class="achievement-card">
+                <i class="fas fa-trophy"></i>
+                <h3>أفضل مشروع</h3>
+                <p>حاز مشروعي على المركز الأول في معرض التقنية السنوي</p>
+                <span class="date">2023</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats">
+        <h2>إحصائيات وأرقام</h2>
+        <div class="stats-container">
+            <div class="stat-card">
+                <i class="fas fa-project-diagram"></i>
+                <div class="stat-number" data-target="150">0</div>
+                <h3>مشروع منجز</h3>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-users"></i>
+                <div class="stat-number" data-target="100">0</div>
+                <h3>عميل سعيد</h3>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-award"></i>
+                <div class="stat-number" data-target="15">0</div>
+                <h3>جائزة وشهادة</h3>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-clock"></i>
+                <div class="stat-number" data-target="5">0</div>
+                <h3>سنوات خبرة</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <h2>آراء العملاء</h2>
+        <div class="testimonials-container">
+            <div class="testimonial-card featured">
+                <div class="client-info">
+                    <img src="Capture.PNG" alt="صورة العميل" class="client-image">
+                    <h3>محمد نعيم</h3>
+                    <span class="client-role">صاحب مطعم اليوڤي للبيتزا</span>
+                </div>
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"أفضل مصمم تعاملت معه على الإطلاق. قام بتصميم قائمة طعام وهوية بصرية احترافية لمطعم اليوفي. التصميم ساعد في جذب الزبائن وزيادة المبيعات بشكل كبير. أنصح الجميع بالتعامل معه"</p>
+                <a href="https://youvi.netlify.app" target="_blank" class="project-link">شاهد المشروع <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-services" class="featured-services">
+        <h2>خدمات مميزة</h2>
+        <div class="featured-services-container">
+            <div class="featured-service-card">
+                <div class="service-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>تصميم هوية بصرية كاملة</h3>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> تصميم شعار احترافي</li>
+                    <li><i class="fas fa-check"></i> بطاقات عمل</li>
+                    <li><i class="fas fa-check"></i> أوراق رسمية</li>
+                    <li><i class="fas fa-check"></i> تصاميم سوشيال ميديا</li>
+                </ul>
+                <a href="#contact" class="service-cta">احجز الآن</a>
+            </div>
+
+            <div class="featured-service-card">
+                <div class="service-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>تصميم موقع متكامل</h3>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> تصميم عصري</li>
+                    <li><i class="fas fa-check"></i> متجاوب مع كل الأجهزة</li>
+                    <li><i class="fas fa-check"></i> لوحة تحكم</li>
+                    <li><i class="fas fa-check"></i> تحسين محركات البحث</li>
+                </ul>
+                <a href="#contact" class="service-cta">احجز الآن</a>
+            </div>
+
+            <div class="featured-service-card">
+                <div class="service-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>تصوير ومونتاج فيديو</h3>
+                <ul class="service-features">
+                    <li><i class="fas fa-check"></i> تصوير احترافي</li>
+                    <li><i class="fas fa-check"></i> مونتاج احترافي</li>
+                    <li><i class="fas fa-check"></i> مؤثرات بصرية</li>
+                    <li><i class="fas fa-check"></i> مقاطع دعائية</li>
+                </ul>
+                <a href="#contact" class="service-cta">احجز الآن</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq">
+        <h2>الأسئلة الشائعة</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>كم تستغرق مدة التنفيذ؟</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>تختلف مدة التنفيذ حسب نوع المشروع. عادةً تستغرق الهوية البصرية 3-5 أيام، والموقع الإلكتروني 7-14 يوم.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>كيف يمكنني الدفع؟</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>نقبل الدفع عبر التحويل البنكي، فودافون كاش، والدفع عند الاستلام.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <h3>هل يمكنني طلب تعديلات؟</h3>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>نعم، يمكنك طلب تعديلين مجاناً على التصميم النهائي.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="featured-projects" class="featured-projects">
+        <h2>مشاريع مميزة</h2>
+        <div class="featured-projects-container">
+            <div class="featured-project-card">
+                <div class="project-image">
+                    <img src="Capture.PNG" alt="مطعم اليوڤي">
+                </div>
+                <div class="project-info">
+                    <h3>مطعم اليوڤي للبيتزا</h3>
+                    <p>تصميم هوية بصرية وموقع إلكتروني لمطعم اليوڤي للبيتزا</p>
+                    <div class="project-tags">
+                        <span>تصميم هوية</span>
+                        <span>تصميم موقع</span>
+                        <span>قائمة طعام</span>
+                    </div>
+                    <a href="https://dawlataluv.netlify.app" class="project-link" id="youvi-link" target="_blank">شاهد المشروع <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <!-- يمكن إضافة المزيد من المشاريع هنا -->
+        </div>
+    </section>
+
+    <section id="portfolio" class="portfolio">
+        <h2>أعمالي</h2>
+        <div class="portfolio-grid">
+            <!-- سيتم إضافة الأعمال لاحقاً عبر JavaScript -->
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>تواصل معي</h2>
+        <div class="contact-options">
+            <a href="https://wa.me/201273381280" class="whatsapp-button" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                تواصل عبر واتساب
+            </a>
+            <div class="contact-info">
+                <p><i class="fas fa-phone"></i> 01273381280</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © <span id="year"></span></p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

