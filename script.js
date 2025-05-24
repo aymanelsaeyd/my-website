@@ -19,6 +19,25 @@ faqItems.forEach(item => {
     });
 });
 
+// Navbar Scroll Control
+let lastScrollTop = 0;
+const header = document.querySelector('header');
+const headerHeight = header.offsetHeight;
+
+window.addEventListener('scroll', () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop && scrollTop > headerHeight) {
+        // عند التمرير لأسفل
+        header.style.transform = 'translateY(-100%)';
+    } else {
+        // عند التمرير لأعلى
+        header.style.transform = 'translateY(0)';
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
 // Project Links
 const projectLinks = {
     'youvi-link': '' // اتركه فارغاً ليتم تحديثه لاحقاً
