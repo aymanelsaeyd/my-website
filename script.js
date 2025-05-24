@@ -19,6 +19,28 @@ faqItems.forEach(item => {
     });
 });
 
+// Mobile Menu Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+    }
+});
+
+// Close menu when clicking a link
+navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+    });
+});
+
 // Navbar Scroll Control
 let lastScrollTop = 0;
 const header = document.querySelector('header');
